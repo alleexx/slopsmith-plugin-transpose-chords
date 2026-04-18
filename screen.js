@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    let active = true;
+    let active = false;
     let semitones = 0;
     let originalChordNames = new Map(); // id -> original name
 
@@ -27,6 +27,7 @@
 
     function computeSemitonesFromTuning(tuning) {
         if (!Array.isArray(tuning) || tuning.length === 0) return 0;
+        if (!tuning.every(val => val === tuning[0])) return 0;
         // Tuning is offsets in semitones from E standard, low-string-first
         const lowStringIndex = 0;
         return -tuning[lowStringIndex];
@@ -129,6 +130,7 @@
         button.title = 'Toggle chord transposition to E Standard';
         button.onclick = toggle;
         controls.insertBefore(button, last);
+        button.click(); // Trigger initial state to apply to current song if loaded
     }
 
     function toggle() {
@@ -170,6 +172,7 @@
 
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', injectBtn);
+        
     } else {
         injectBtn();
     }
