@@ -1,6 +1,6 @@
 # Transpose Chords Plugin
 
-This plugin automatically transposes chord names displayed on the highway to E Standard tuning, regardless of the song's actual tuning.
+This plugin automatically transposes chord names displayed on the highway to E Standard tuning (only if original tuning is not E Standard and song was not converted).
 
 ## How it works
 
